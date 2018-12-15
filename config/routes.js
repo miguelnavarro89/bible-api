@@ -1,23 +1,22 @@
 import {
   getVersions,
-  getVersionData,
+  getVersion,
   getBooks,
-  getAnnotation,
+  getAnnotations,
   getChapter,
   getVerse,
   getHome,
 } from '../controllers/routing/';
 
-const routes = {
+export const routes = {
   get: [
     { path: '/versions', controller: getVersions },
-    { path: '/versions/:version', controller: getVersionData },
-    { path: '/:version/annotation/:annotationId', controller: getAnnotation },
+    { path: '/versions/:version', controller: getVersion },
+    { path: '/:version/annotations/:book/:chapter/', controller: getAnnotations },
+    { path: '/:version/annotations/:book/:chapter/:verse', controller: getAnnotations },
     { path: '/:version/books', controller: getBooks },
     { path: '/:version/books/:book/:chapter', controller: getChapter },
     { path: '/:version/books/:book/:chapter/:verse', controller: getVerse },
     { path: '/*', controller: getHome },
   ],
-};
-
-export default routes;
+}

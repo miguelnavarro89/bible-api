@@ -1,5 +1,5 @@
 import mysql from 'mysql';
-import dbConfig from './config/dbconfig'
+import dbConfig from './config/db'
 
 class DB {
   constructor(config = dbConfig) {
