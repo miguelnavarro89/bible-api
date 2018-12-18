@@ -28,8 +28,9 @@ class App {
   }
 
   serve(cb) {
-    cb = cb || (() => console.log(`  ✨ 🚀  Server listening on port: ${server.address().port}`))
-    const server = this._express.listen(8081, cb)
+    cb = cb || (() => console.log(`  ✨ 🚀  Server running on port: ${server.address().port}`))
+    const port = 8081
+    const server = this._express.listen(port, cb)
     return server
   }
 }

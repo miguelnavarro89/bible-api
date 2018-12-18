@@ -6,13 +6,13 @@ export const getAnnotations = (req, res) => {
   
   const defaultQ = `
     SELECT * FROM ${version}_annotations
-    WHERE osis = '${book}.${chapter}'
-      ${verse ? `AND link REGEXP '-${verse}[^0-9]'` : ''}
+    WHERE reference = '${book}.${chapter}'
+      ${verse ? `AND marker REGEXP '-${verse}[^0-9]'` : ''}
     LIMIT 0, 1000
   `
   const NKJVQ = `
     SELECT * FROM ${version}_annotations
-    WHERE book_number = (SELECT book_number FROM ${version}_books WHERE short_name = '${book}')
+    WHERE book_id = (SELECT id FROM ${version}_books WHERE short_name = '${book}')
       AND chapter = ${chapter}
       ${verse ? `AND verse = ${verse}` : ''}
     LIMIT 0,1000
