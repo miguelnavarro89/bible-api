@@ -12,6 +12,11 @@ class App {
   }
 
   _setConfig() {
+    this._express.use((req, res, next) => {
+      res.header('Access-Control-Allow-Origin', '*')
+      res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+      next()
+    })
     this._express.use(bodyParser.json())
     this._express.use(bodyParser.urlencoded({ extended: true }))
   }
