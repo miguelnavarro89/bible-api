@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/miguelnavarro89/prayer-tank.git"
+    "url": ""
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/miguelnavarro89/prayer-tank/issues"
+    "url": ""
   },
-  "homepage": "https://github.com/miguelnavarro89/prayer-tank#readme",
+  "homepage": "",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
