@@ -1,10 +1,10 @@
-import { routes } from '../../config'
 import { __, replace, join, mapObjIndexed, map, pick, pipe, assoc, values, flatten } from 'ramda'
+import { routes } from '../config'
 
 const enlist = pipe(
   mapObjIndexed((n, k, ob) => map(assoc('method', k))(ob[k])),
   values,
-  flatten,
+  flatten
 )
 const doc = pipe(
   enlist,
@@ -31,5 +31,5 @@ export const getHome = (req, res) => {
   res.send(`
     <h1>📖 BIBLE API is ready 🙏🏼</h1>
     ${doc(routes)}
-  `);
-};
+  `)
+}

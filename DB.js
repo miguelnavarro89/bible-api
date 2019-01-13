@@ -1,12 +1,12 @@
-import mysql from 'mysql';
+import mysql from 'mysql'
 import dbConfig from './config/db'
 
 class DB {
-  constructor(config = dbConfig) {
+  constructor (config = dbConfig) {
     this.config = config
   }
 
-  connect() {
+  connect () {
     this.config = this.config || dbConfig
     this.connection = mysql.createConnection(this.config)
   }
@@ -19,12 +19,12 @@ class DB {
         if (error) reject(error)
         else resolve(result)
       })
-      this.close()
     })
   }
 
-  close() {
+  close () {
     this.connection.end()
+    this.connection = null
   }
 }
 

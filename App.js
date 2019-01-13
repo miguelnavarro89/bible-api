@@ -5,13 +5,13 @@ import { mapObjIndexed, map, pipe, forEach, assoc, values, flatten, compose } fr
 import { routes } from './config'
 
 class App {
-  constructor() {
+  constructor () {
     this._express = express()
     this._setConfig()
     this._defineRoutes()
   }
 
-  _setConfig() {
+  _setConfig () {
     this._express.use((req, res, next) => {
       res.header('Access-Control-Allow-Origin', '*')
       res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
@@ -21,7 +21,7 @@ class App {
     this._express.use(bodyParser.urlencoded({ extended: true }))
   }
 
-  _defineRoutes() {
+  _defineRoutes () {
     const setRoute = ({ method, path, controller }) => this._express[method](path, controller)
     const enlist = pipe(
       mapObjIndexed((n, k, ob) => map(assoc('method', k))(ob[k])),
@@ -32,7 +32,7 @@ class App {
     define(routes)
   }
 
-  serve(cb) {
+  serve (cb) {
     cb = cb || (() => console.log(`  ✨ 🚀  Server running on port: ${server.address().port}`))
     const port = 8081
     const server = this._express.listen(port, cb)

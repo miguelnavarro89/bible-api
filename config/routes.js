@@ -5,8 +5,8 @@ import {
   getAnnotations,
   getChapter,
   getVerse,
-  getHome,
-} from '../controllers/routing/';
+  getHome
+} from '../controllers'
 
 export const routes = {
   get: [
@@ -17,6 +17,6 @@ export const routes = {
     { path: '/:version/books', controller: getBooks },
     { path: '/:version/books/:book/:chapter', controller: getChapter },
     { path: '/:version/books/:book/:chapter/:verse', controller: getVerse },
-    { path: '/*', controller: getHome },
-  ],
+    { path: '/*', controller: getHome }
+  ]
 }
