@@ -1,19 +1,21 @@
-import { execQuery } from '../utils'
+import { handleResponseWithQuery } from '../utils'
 
-export const getChapter = (req, res) => {
-  const { version, book, chapter } = req.params
-  const { merged } = req.query
+export const getChapter = handleResponseWithQuery((request) => {
+  const { version, book, chapter } = request.params
+  const { merged } = request.query
   const reference = `${book}.${chapter}`
 
   const query = {
-    default: merged ? `
-      SELECT * FROM ${version}_chapters WHERE reference = '${reference}' LIMIT 0, 1000
-    ` : `
-      SELECT * FROM ${version}_verses
-      WHERE book = '${book}'
-        AND verse LIKE '${chapter}.%'
-      LIMIT 0, 1000
-    `,
+    default: merged
+      ? `
+        SELECT * FROM ${version}_chapters WHERE reference = '${reference}' LIMIT 0, 1000
+      `
+      : `
+        SELECT * FROM ${version}_verses
+        WHERE book = '${book}'
+          AND verse LIKE '${chapter}.%'
+        LIMIT 0, 1000
+      `,
     nkjv: `
       SELECT * FROM ${version}_verses
       WHERE book_id = (SELECT id from ${version}_books WHERE short_name = '${book}')
@@ -22,7 +24,5 @@ export const getChapter = (req, res) => {
     `
   }
 
-  execQuery(query[version] || query.default)
-    .catch(res.status(404).send.bind(res))
-    .then(res.send.bind(res))
-}
+  return query[version] || query.default
+})

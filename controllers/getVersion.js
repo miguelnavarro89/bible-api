@@ -1,10 +1,7 @@
-import { execQuery } from '../utils'
+import { handleResponseWithQuery } from '../utils'
 
-export const getVersion = (req, res) => {
-  const { version } = req.params
+export const getVersion = handleResponseWithQuery((request) => {
+  const { version } = request.params
   const query = `SELECT * FROM ${version}_metadata`
-
-  execQuery(query)
-    .catch(res.status(404).send.bind(res))
-    .then(res.send.bind(res))
-}
+  return query
+})

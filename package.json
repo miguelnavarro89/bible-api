@@ -1,22 +1,23 @@
 {
   "name": "bible-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "Get whole chapters, verses and annotations from the best Bible versions such as Geneva, NKJV, AMP, among others.",
   "main": "index.js",
   "scripts": {
     "start": "nodemon --inspect index.js --exec babel-node --presets es2015,stage-2",
-    "serve": "pm2 start --interpreter babel-node index.js"
+    "serve": "pm2 start --interpreter babel-node index.js",
+    "lint": "standard"
   },
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/miguelnavarro89/bible-api"
   },
-  "author": "",
+  "author": "Miguel Angel Navarro Rolon",
   "license": "ISC",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/miguelnavarro89/bible-api/issues"
   },
-  "homepage": "",
+  "homepage": "http://bibleapi.miguelnavarro.co",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
@@ -26,10 +27,8 @@
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
-    "eslint": "^4.19.0",
-    "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.9.0",
     "nodemon": "^1.18.8",
-    "ramda": "^0.26.1"
+    "ramda": "^0.26.1",
+    "standard": "*"
   }
 }

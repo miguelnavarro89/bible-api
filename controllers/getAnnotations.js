@@ -1,13 +1,12 @@
-import { execQuery } from '../utils'
+import { handleResponseWithQuery } from '../utils'
 
-export const getAnnotations = (req, res) => {
-  const { version, book, chapter, verse } = req.params
+export const getAnnotations = handleResponseWithQuery((request) => {
+  const { version, book, chapter, verse } = request.params
 
   const query = {
     default: `
       SELECT * FROM ${version}_annotations
       WHERE reference = '${book}.${chapter}'
-        ${verse ? `AND marker REGEXP '-${verse}[^0-9]'` : ''}
       LIMIT 0, 1000
     `,
     nkjv: `
@@ -18,7 +17,6 @@ export const getAnnotations = (req, res) => {
       LIMIT 0,1000
     `
   }
-  execQuery(query[version] || query.default)
-    .catch(res.status(404).send.bind(res))
-    .then(res.send.bind(res))
-}
+
+  return query[version] || query.default
+})

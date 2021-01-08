@@ -6,6 +6,7 @@ import {
   getChapter,
   getVerse,
   getHome
+  // getRandomVerse
 } from '../controllers'
 
 export const routes = {
@@ -17,6 +18,7 @@ export const routes = {
     { path: '/:version/books', controller: getBooks },
     { path: '/:version/books/:book/:chapter', controller: getChapter },
     { path: '/:version/books/:book/:chapter/:verse', controller: getVerse },
+    // { path: '/verse/random', controller: getRandomVerse },
     { path: '/*', controller: getHome }
   ]
 }

@@ -1,31 +1,33 @@
 import mysql from 'mysql'
-import dbConfig from './config/db'
+import { DbSettings } from './config/db'
 
-class DB {
-  constructor (config = dbConfig) {
-    this.config = config
+export function DB (config = DbSettings) {
+  const _config = config
+  let connection
+
+  function connect () {
+    connection = mysql.createConnection(_config)
   }
 
-  connect () {
-    this.config = this.config || dbConfig
-    this.connection = mysql.createConnection(this.config)
-  }
-
-  query (query) {
+  function query (query) {
     if (!query) return
-    !this.connection && this.connect()
+    !connection && connect()
     return new Promise((resolve, reject) => {
-      this.connection.query(query, (error, result) => {
+      connection.query(query, (error, result) => {
         if (error) reject(error)
         else resolve(result)
       })
     })
   }
 
-  close () {
-    this.connection.end()
-    this.connection = null
+  function close () {
+    connection.end()
+    connection = null
+  }
+
+  return {
+    connect,
+    query,
+    close
   }
 }
-
-export default DB

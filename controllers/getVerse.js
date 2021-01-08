@@ -1,7 +1,7 @@
-import { execQuery } from '../utils'
+import { handleResponseWithQuery } from '../utils'
 
-export const getVerse = (req, res) => {
-  const { version, book, chapter, verse } = req.params
+export const getVerse = handleResponseWithQuery((request) => {
+  const { version, book, chapter, verse } = request.params
   const chapVerse = `${chapter}.${verse.padStart(3, '0')}`
 
   const query = {
@@ -15,7 +15,5 @@ export const getVerse = (req, res) => {
     `
   }
 
-  execQuery(query[version] || query.default)
-    .catch(res.status(404).send.bind(res))
-    .then(res.send.bind(res))
-}
+  return query[version] || query.default
+})

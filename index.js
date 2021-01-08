@@ -1,4 +1,4 @@
-import App from './App'
+import { initApp } from './App'
 
-const app = new App()
+const app = initApp()
 app.serve()
