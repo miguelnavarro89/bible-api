@@ -1,5 +1,5 @@
 import mysql from 'mysql'
-import { DbSettings } from './config/db'
+import DbSettings from './config/db'
 
 export function DB (config = DbSettings) {
   const _config = config

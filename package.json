@@ -4,8 +4,8 @@
   "description": "Get whole chapters, verses and annotations from the best Bible versions such as Geneva, NKJV, AMP, among others.",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --inspect index.js --exec babel-node --presets es2015,stage-2",
-    "serve": "pm2 start --interpreter babel-node index.js",
+    "start": "nodemon --inspect index.js --exec babel-node --presets es2015,stage-2 > app.log",
+    "serve": "pm2 start --interpreter babel-node index.js -e app.log",
     "lint": "standard"
   },
   "repository": {

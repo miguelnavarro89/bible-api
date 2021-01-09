@@ -50,6 +50,7 @@ export const handleResponseWithQuery = curry(async (getSQLQuery, request, respon
 
     response.send(result)
   } catch (e) {
+    console.log(e)
     response.status(404).send(e)
   }
 })
